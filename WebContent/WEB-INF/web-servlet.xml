@@ -17,6 +17,22 @@
  	<mvc:annotation-driven />
 	<context:component-scan base-package="com.Controllers" />
  	<mvc:default-servlet-handler/>
+ 	
+ 	<bean id="AuthorDAOImpl" class="com.DAOImpl.AuthorDAOImpl">
+ 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+ 	</bean>
+ 
+ 	<!-- Database Configurations -->
+ 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://127.0.0.1:3306/librarymanagementsystem?serverTimezone=UTC" />
+	    <property name="username" value="root" />
+	    <property name="password" value="root" />
+	</bean>
+ 	
+ 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+ 		<property name="dataSource" ref="dataSource" />
+ 	</bean>
  
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
